@@ -1,9 +1,12 @@
 import React from "react";
 import { Button } from "./components/atoms/Button"
 
+import { MARKETLISTTEXT } from "./constants/texts";
+import { MARKETLISTSIZE } from "./constants/sizes";
+
 const MarketList = () => (
   <div>
-    <Button _width="64px" _height="38px" content="거래" />
+    <Button _width={MARKETLISTSIZE.tradeButton.x} _height={MARKETLISTSIZE.tradeButton.y} content={MARKETLISTTEXT.KOR.tradeButton} />
   </div>
 )
 
