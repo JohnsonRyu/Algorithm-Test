@@ -4,6 +4,7 @@ import { Menu, MenuItemProps } from "semantic-ui-react";
 import styled, {css} from "styled-components";
 
 import { IComponentProps } from "../../../constants/types";
+import { THEME } from "../../../constants/colors";
 
 interface IMenuItemProps extends IComponentProps {
   name?: MenuItemProps["name"];
@@ -29,8 +30,8 @@ const StyledMenuItem = styled(SemanticStyledMenuItem)`
   ${props =>
     props._active === true &&
     css`
-      border-bottom: 2px solid #376fe0 !important;
-      color: #376fe0 !important;
+      border-bottom: 2px solid ${THEME.basic.tabBorder} !important;
+      color: ${THEME.basic.tabBorder} !important;
     `};
 `;
 
