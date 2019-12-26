@@ -3,7 +3,7 @@ const COLOR = {
 };
 
 export const THEME = {
-  palette: {
+  basic: {
     tabBorder: COLOR.korbitBlue,
     tabText: COLOR.korbitBlue
   }
