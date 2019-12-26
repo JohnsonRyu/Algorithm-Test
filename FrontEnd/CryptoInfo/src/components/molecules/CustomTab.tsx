@@ -6,9 +6,9 @@ import { observer } from "mobx-react";
 
 import { Menu, MenuItem } from "../atoms/Menu";
 import { ITabType } from "../../constants/interfaces";
+import { IComponentProps } from "../../constants/types";
 
-
-interface ICustomTabProps {
+interface ICustomTabProps extends IComponentProps {
   tabs: ITabType[];
 }
 
@@ -34,6 +34,7 @@ export class CustomTab extends Component<ICustomTabProps> {
           pointing
           secondary
           widths={this.props.tabs.length as MenuProps["widths"]}
+          _outer="compact"
         >
           {this.props.tabs.map((tab: ITabType) => (
             <MenuItem
@@ -44,6 +45,7 @@ export class CustomTab extends Component<ICustomTabProps> {
             />
           ))}
         </Menu>
+        {this.props.children}
         {this.props.tabs
           .find((tab: ITabType) => this.activeItem === tab.menuName)!
           .render()}
