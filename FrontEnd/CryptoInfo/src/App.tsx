@@ -1,8 +1,8 @@
 import React from "react";
-import MarketList from "./MarketList";
+import MarketPage from "./MarketPage";
 
 const App = () => (
-  <MarketList />
+  <MarketPage />
 )
 
 export default App
