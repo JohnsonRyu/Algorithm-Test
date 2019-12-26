@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Search, SearchProps } from "semantic-ui-react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import { IComponentProps } from "../../../constants/types";
 
