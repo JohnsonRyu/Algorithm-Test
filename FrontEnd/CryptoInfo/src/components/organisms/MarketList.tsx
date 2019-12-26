@@ -1,15 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
 
 import { Button } from "../../components/atoms/Button"
 import { MARKETLISTTEXT } from "../../constants/texts";
 import { MARKETLISTSIZE } from "../../constants/sizes";
 import { CustomTab } from "../../components/molecules/CustomTab";
+import { ITabType } from "../../constants/interfaces";
 
-const MarketList = () => (
-  <div>
-    <CustomTab />
-    <Button _width={MARKETLISTSIZE.tradeButton.x} _height={MARKETLISTSIZE.tradeButton.y} content={MARKETLISTTEXT.KOR.tradeButton} />
-  </div>
-)
+export class MarketList extends Component {
+  tabs: ITabType[] = [
+    { menuName: "KRW", render: () => <div>KRW</div> },
+    { menuName: "USDC", render: () => <div>USDC</div>  },
+  ];
 
-export default MarketList
+  render() {
+    return(
+      <CustomTab tabs={this.tabs} />
+    )
+  }
+}

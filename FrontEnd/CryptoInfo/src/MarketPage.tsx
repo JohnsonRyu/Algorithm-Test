@@ -1,6 +1,6 @@
 import React from "react";
 
-import MarketList from "./components/organisms/MarketList";
+import { MarketList } from "./components/organisms/MarketList";
 
 const MarketPage = () => (
   <MarketList />
