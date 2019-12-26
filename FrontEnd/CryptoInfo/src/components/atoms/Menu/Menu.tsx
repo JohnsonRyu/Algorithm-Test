@@ -6,6 +6,10 @@ import styled from "styled-components";
 import { IComponentProps } from "../../../constants/types";
 
 interface IMenuProps extends IComponentProps {
+  pointing?: MenuProps["pointing"];
+  secondary?: MenuProps["secondary"];
+  widths?: MenuProps["widths"];
+
   _background_color?: string;
   _width?: string;
 }
@@ -13,6 +17,9 @@ interface IMenuProps extends IComponentProps {
 const SemanticStyledMenu = ({ className, ...props }: IMenuProps) => (
   <Menu
     className={className}
+    pointing={props.pointing}
+    secondary={props.secondary}
+    widths={props.widths}
   >
     {props.children}
   </Menu>
@@ -25,6 +32,9 @@ const StyledMenu = styled(SemanticStyledMenu)`
 
 export const SemanticMenu = (props: IMenuProps) => (
   <StyledMenu
+    pointing={props.pointing}
+    secondary={props.secondary}
+    widths={props.widths}
     _background_color={props._background_color}
     _width={props._width}
   >
