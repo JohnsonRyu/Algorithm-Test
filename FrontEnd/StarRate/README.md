@@ -15,6 +15,29 @@
 - 손과 문법의 뇌는 1인데. 원하는 구현 난이도는 2가 되는 것 같다. 해커톤 때도 느끼는 것이지만, 구현 목표를 확실하게 정하고 멈추는 법을 더 냉정하게 배워야할 것 같다.
 - 구현 도중 0.5 단위가 아닌, 0.1로 변경 되었을 때에 대한 확장성들을 고민하기 시작했다. 물론, 개발자로서 중요한 점이라고 생각하지만 나에게 주어진 시간과 나의 능력을 잊지 말아야한다. `Done is better than perfect`
 
+# 피드백
+(velopert님) 풀어주신 것 처럼 별을 보여주는 Star 컴포넌트 쪽에 이벤트를 달아주는 방식으로 하면 코드가 복잡해지기 쉽습니다. 이런 상황에서는 이벤트를 여러 별을 감싸고 있는 StyledContainer에 해당하는 부분에 이벤트를 달아주는것이 편합니다. 커서 위치에 따라 몇%인지 계산을 해서 그에 해당하는 별점을 보여주시면 됩니다.
+
+그리고, 이 컴포넌트를 구현 할 때, 모바일 전용 따로, 데스크탑 전용 따로 구현 할 필요는 없고
+
+- onMouseDown
+- onMouseUp
+- onMouseEnter
+- onMouseMove
+- onMouseLeave
+- onTouchStart
+- onTouchMove
+- onTouchEnd<br>
+
+모두 한꺼번에 설정을 하는 방식으로 하셔도 문제없습니다.
+
+DOMEvent를 잘 다루기 위해선 JS 문법보다는, DOM 이벤트에 어떤 것들이 있는지 MDN을 참조해보면서 공부해보시면 됩니다. https://developer.mozilla.org/en-US/docs/Web/API/Element
+
+추가적으로, 리액트 없이 JS로만 기능을 구현해보는 것도 연습하시면 DOM을 다루는 실력을 쌓는데 도움이 됩니다.
+<br>
+<br>
+<br>
+<br>
 
 ## 실행
 ### codesandbox를 통하여 작업하였음. [(링크)](https://codesandbox.io/embed/starrate-x6ymg?fontsize=14&hidenavigation=1&theme=dark)
