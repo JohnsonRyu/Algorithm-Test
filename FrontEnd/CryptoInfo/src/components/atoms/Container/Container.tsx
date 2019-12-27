@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { IComponentProps } from "../../../constants/types";
 import {
@@ -17,6 +17,7 @@ interface IContainerProps extends IComponentProps {
 
   _width?: string;
   _height?: string;
+  _borderBottom?: boolean;
 }
 
 const CustomStyledContainer = ({ className, ...props }: IContainerProps) => (
@@ -31,10 +32,14 @@ const StyledContainer = styled(CustomStyledContainer)`
   ${props => props._outer && outerStyling(props._outer)}
   ${props => props._inner && innerStyling(props._inner)}
 
-  border-bottom: 1px solid ${THEME.basic.containerBorder} !important;
-
   width: ${props => props._width} !important;
   height: ${props => props._height} !important;
+
+  ${props =>
+    props._borderBottom === true &&
+    css`
+      border-bottom: 1px solid ${THEME.basic.containerBorder} !important;
+  `};
 `;
 
 export const Container = (props: IContainerProps) => (
@@ -43,6 +48,7 @@ export const Container = (props: IContainerProps) => (
     _inner={props._inner}
     _width={props._width}
     _height={props._height}
+    _borderBottom={props._borderBottom}
   >
     {props.children}
   </StyledContainer>
