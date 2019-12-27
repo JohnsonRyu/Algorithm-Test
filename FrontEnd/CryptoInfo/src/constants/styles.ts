@@ -11,7 +11,7 @@ export type IOuterType =
   | "column-small"
   | "column-middle";
 
-  export type IInnerType =
+export type IInnerType =
   | "compact"
   | "tiny"
   | "small"
@@ -21,6 +21,16 @@ export type IOuterType =
   | "column-tiny"
   | "column-small"
   | "column-middle";
+
+export type IContentAlignType =
+  | "center"
+  | "justify-center"
+  | "align-center"
+  | "align-end"
+  | "justify-end"
+  | "justify-space-between"
+  | "space-between-center"
+  | "justify-end-center";
 
 export function outerStyling(_outer: IOuterType) {
   if (_outer === "compact") {
@@ -98,6 +108,53 @@ export function innerStyling(_inner: IInnerType) {
   } else if (_inner === "column-middle") {
     return css`
       padding: 0 20px !important;
+    `;
+  }
+}
+
+export function contentAlignStyling(_content_align: IContentAlignType) {
+  if (_content_align === "center") {
+    return css`
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    `;
+  } else if (_content_align === "justify-center") {
+    return css`
+      display: flex !important;
+      justify-content: center !important;
+    `;
+  } else if (_content_align === "align-center") {
+    return css`
+      display: flex !important;
+      align-items: center !important;
+    `;
+  } else if (_content_align === "align-end") {
+    return css`
+      display: flex !important;
+      align-items: flex-end !important;
+    `;
+  } else if (_content_align === "justify-end") {
+    return css`
+      display: flex !important;
+      justify-content: flex-end !important;
+    `;
+  } else if (_content_align === "justify-space-between") {
+    return css`
+      display: flex !important;
+      justify-content: space-between !important;
+    `;
+  } else if (_content_align === "space-between-center") {
+    return css`
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    `;
+  } else if (_content_align === "justify-end-center") {
+    return css`
+      display: flex !important;
+      justify-content: flex-end !important;
+      align-items: center !important;
     `;
   }
 }

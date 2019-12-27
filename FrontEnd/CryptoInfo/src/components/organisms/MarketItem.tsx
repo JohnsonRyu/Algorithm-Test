@@ -38,9 +38,11 @@ export class MarketItem extends Component<IMarketItemProps> {
 
   render() {
     return(
-        <Container _inner="column-middle" _height="80px" _borderBottom>
-          <TextWithUnit first={this.props.marketItemInfo.koreanName} second={this.props.marketItemInfo.symbol} space />
-          <PriceWithRate price={this.props.marketItemInfo.last} marketUnit={MARKETUNIT.KOR[this.marketUnit]} changePercent={this.props.marketItemInfo.changePercent} arrow={this.arrow} color={this.color} />
+        <Container _inner="column-middle" _height="80px" _content_align="space-between-center" _borderBottom>
+          <Container>
+            <TextWithUnit first={this.props.marketItemInfo.koreanName} second={this.props.marketItemInfo.symbol} space />
+            <PriceWithRate price={this.props.marketItemInfo.last} marketUnit={MARKETUNIT.KOR[this.marketUnit]} changePercent={this.props.marketItemInfo.changePercent} arrow={this.arrow} color={this.color} />
+          </Container>
           <Button>거래</Button>
         </Container>
     )
