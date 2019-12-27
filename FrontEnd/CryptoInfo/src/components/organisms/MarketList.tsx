@@ -34,7 +34,8 @@ export class MarketList extends Component {
         high: "55",
         volume: "586236.187707313636363636",
         change: "-2.8",
-        changePercent: "0"
+        changePercent: "-2.4",
+        changeType: "FALL"
       }
       return info;
     })

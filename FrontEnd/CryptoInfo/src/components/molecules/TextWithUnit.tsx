@@ -14,6 +14,7 @@ export class TextWithUnit extends Component<ITextWithUnitProps> {
     return (
       <Container>
         <Text>{this.props.first}</Text>
+        {this.props.space === true ? <span>&nbsp;</span> : <></>}
         <Text>{this.props.second}</Text>
       </Container>
     );

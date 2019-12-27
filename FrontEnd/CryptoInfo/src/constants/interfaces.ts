@@ -1,3 +1,5 @@
+import { ChangeType } from "./types";
+
 export interface ITabType {
   menuName: string;
   render: () => JSX.Element;
@@ -23,4 +25,6 @@ export interface ICoinInfo {
   koreanName: string;
 }
 
-export interface IMarketItemInfo extends ICoinInfo, ICoinDetailed {}
+export interface IMarketItemInfo extends ICoinInfo, ICoinDetailed {
+  changeType: ChangeType;
+}
