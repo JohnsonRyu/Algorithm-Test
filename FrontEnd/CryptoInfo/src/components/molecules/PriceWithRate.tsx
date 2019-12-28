@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import { Container } from "../atoms/Container";
 import { Text } from "../atoms/Text";
-import { ChangeType } from "../../constants/types";
 
 interface IPriceWithRateProps {
   price?: string;
