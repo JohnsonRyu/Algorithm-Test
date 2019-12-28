@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
   // 의존성 그래프의 시작점
   entry: { 
-    index: './src/index.tsx'
+    index: "./src/index.tsx"
   },
   // 번들된 결과물의 위치
   output: {
@@ -15,7 +15,7 @@ module.exports = {
   resolve: {
     extensions: [ ".tsx", ".ts", ".js" ]
   },
-  externals: '/node_modules',
+  externals: "/node_modules",
   // test : 로딩할 파일 & use : 적용할 로더
   module: {
     rules: [
@@ -34,13 +34,14 @@ module.exports = {
   // "./public/index.html" 경로의 html 파일에 번들 파일을 넣어줍니다.
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: "./public/favicon.ico",
       template: "./public/index.html",
       filename: "./index.html",
     })
   ],
-
-  devServer : {               // devserver 설정을 추가해준다.
-    contentBase : "./public",
+  // devserver 설정을 추가해준다.
+  devServer : {
+    contentBase: path.join(__dirname, "dist"),
     port : 3000,
     hot : true,
     inline : true,
