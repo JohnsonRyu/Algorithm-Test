@@ -11,6 +11,8 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist")
   },
+  // webpack의 출력을 디버깅 할 소스 맵을 사용하도록 설정합니다.
+  devtool: "source-map",
   // 확인 가능한 확장자
   resolve: {
     extensions: [ ".tsx", ".ts", ".js" ]
