@@ -9,7 +9,8 @@ module.exports = {
   // 번들된 결과물의 위치
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/"
   },
   // webpack의 출력을 디버깅 할 소스 맵을 사용하도록 설정합니다.
   devtool: "source-map",
@@ -47,6 +48,7 @@ module.exports = {
     port : 3000,
     hot : true,
     inline : true,
-    compress: true
+    compress: true,
+    historyApiFallback: true
   }
 };

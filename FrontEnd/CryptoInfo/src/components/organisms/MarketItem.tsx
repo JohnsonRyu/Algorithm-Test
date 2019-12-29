@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import { Container } from "../atoms/Container";
 import { Button } from "../atoms/Button";
 import { TextWithUnit } from "../molecules/TextWithUnit";
 import { PriceWithRate } from "../molecules/PriceWithRate";
 import { IMarketItemInfo } from "../../constants/interfaces";
-import { MARKETUNIT } from "../../constants/texts";
+import { MARKETUNIT, MARKETLISTTEXT } from "../../constants/texts";
 import { MarketType } from "../../constants/types";
 import { THEME } from "../../constants/colors";
 
@@ -36,14 +37,14 @@ export class MarketItem extends Component<IMarketItemProps> {
 
   render() {
     this.checkState();
-    
+
     return(
         <Container _inner="column-middle" _height="80px" _content_align="space-between-center" _borderBottom>
           <Container>
             <TextWithUnit first={this.props.marketItemInfo.koreanName} second={this.props.marketItemInfo.symbol} space />
             <PriceWithRate price={this.props.marketItemInfo.last} marketUnit={MARKETUNIT.KOR[this.marketUnit]} changePercent={this.props.marketItemInfo.changePercent} arrow={this.arrow} color={this.color} />
           </Container>
-          <Button>거래</Button>
+          <Link to={`/order?code=${this.props.marketItemInfo.code}`}><Button>{MARKETLISTTEXT.KOR.tradeButton}</Button></Link>
         </Container>
     )
   }

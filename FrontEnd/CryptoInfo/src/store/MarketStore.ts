@@ -39,7 +39,8 @@ export class MarketStore {
           volume: stringToLocale(coinDetail.volume),
           change: stringToLocale(coinDetail.change),
           changePercent: stringToLocale(coinDetail.changePercent, 2),
-          changeType: this.calcChangeType(coinDetail.changePercent)
+          changeType: this.calcChangeType(coinDetail.changePercent),
+          code: key
         }
 
         if(market === MARKET.krw) {
@@ -75,7 +76,8 @@ export class MarketStore {
         volume: "0",
         change: "0",
         changePercent: "0",
-        changeType: "EVEN"
+        changeType: "EVEN",
+        code: key
       }
 
       this.marketTokenList.get(info.market)!.push(info);

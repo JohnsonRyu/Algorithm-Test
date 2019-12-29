@@ -26,4 +26,5 @@ export interface ICoinInfo {
 
 export interface IMarketItemInfo extends ICoinInfo, ICoinDetailed {
   changeType: ChangeType;
+  code: string;
 }
