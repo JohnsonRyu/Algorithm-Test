@@ -1,48 +1,28 @@
 import React, { Component, Fragment } from "react";
-import { observable } from "mobx";
-import { observer } from "mobx-react";
+import { observer, inject } from "mobx-react";
 
 import { CustomTab } from "../../components/molecules/CustomTab";
-import { ITabType, IMarketItemInfo, ICoinInfo } from "../../constants/interfaces";
+import { ITabType, IMarketItemInfo } from "../../constants/interfaces";
 import { MarketItem } from "./MarketItem";
-import { MARKETINFO } from "../../constants/marketInfo";
+import { publicAPI } from "../../api/publicAPI";
+import { MarketStore } from "../../store/MarketStore";
+import { STORE } from "../../constants/stores";
 
+interface IMarketListProps {
+  marketStore?: MarketStore;
+}
+
+@inject(STORE.marketStore)
 @observer
-export class MarketList extends Component {
-
-  @observable marketItemInfo : IMarketItemInfo[] = [];
+export class MarketList extends Component<IMarketListProps> {
 
   tabs: ITabType[] = [
     { menuName: "KRW", render: () => <Fragment>{this.marketListRender()}</Fragment>},
     { menuName: "USDC", render: () => <div>USDC</div>  },
   ];
 
-  componentDidMount() {
-    this.marketItemInfo = this.temp();
-  }
-
-  temp = () => {
-    return MARKETINFO.KRW.map((data: ICoinInfo) => {
-      const info: IMarketItemInfo = {
-        ...data,
-        timestamp: 1577365310583,
-        last: "52.2",
-        open: "55",
-        bid: "51.7",
-        ask: "52.2",
-        low: "51.6",
-        high: "55",
-        volume: "586236.187707313636363636",
-        change: "-2.8",
-        changePercent: "-2.4",
-        changeType: "FALL"
-      }
-      return info;
-    })
-  }
-
   marketListRender = () => {
-    return this.marketItemInfo.map((data: IMarketItemInfo) => (
+    return this.props.marketStore!.marketItemInfo.map((data: IMarketItemInfo) => (
       <MarketItem
         key={data.symbol}
         marketItemInfo={data}
@@ -51,6 +31,7 @@ export class MarketList extends Component {
   }
 
   render() {
+    publicAPI.getMarketDetailed();
     return(
       <CustomTab tabs={this.tabs} />
     )
