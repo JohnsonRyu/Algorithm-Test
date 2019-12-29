@@ -1,0 +1,1 @@
+export const SERVER_API_HOST = "https://cors-anywhere.herokuapp.com/https://api.korbit.co.kr/v1";
