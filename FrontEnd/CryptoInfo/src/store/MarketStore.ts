@@ -4,7 +4,7 @@ import { IMarketItemInfo, ICoinDetailed } from "../constants/interfaces";
 import { MARKETINFO } from "../constants/marketInfo";
 import { publicAPI } from "../api/publicAPI";
 import { MARKET } from "../constants/texts";
-import { ChangeType } from "../constants/types";
+import { ChangeType, MarketType } from "../constants/types";
 import { stringToLocale } from "../commonFunction/stringControl";
 
 export class MarketStore {
@@ -12,6 +12,7 @@ export class MarketStore {
     [MARKET.krw, observable.array<IMarketItemInfo>()],
     [MARKET.usdc, observable.array<IMarketItemInfo>()]
   ]);
+  @observable curMarket: MarketType = "KRW";
 
   constructor() {
     this.init();
@@ -52,6 +53,13 @@ export class MarketStore {
     });
   }
 
+  public setCurMarket = (market: MarketType) => {
+    this.curMarket = market;
+  }
+
+  public getMarketCoinCount = (market: MarketType) => {
+    return this.marketTokenList.get(market)!.length;
+  }
 
   private init() {
     for (const key in MARKETINFO) {

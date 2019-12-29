@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { observer, inject } from "mobx-react";
 
+import { MarketItem } from "./MarketItem";
+import { MarketInfoLine } from "./MarketInfoLine";
 import { CustomTab } from "../../components/molecules/CustomTab";
 import { ITabType, IMarketItemInfo } from "../../constants/interfaces";
-import { MarketItem } from "./MarketItem";
-import { MarketStore } from "../../store/MarketStore";
 import { STORE } from "../../constants/stores";
 import { MARKET } from "../../constants/texts";
+import { MarketStore } from "../../store/MarketStore";
+import { MarketType } from "../../constants/types";
 
 interface IMarketListProps {
   marketStore?: MarketStore;
@@ -25,6 +27,10 @@ export class MarketList extends Component<IMarketListProps> {
     { menuName: "USDC", render: () => <Fragment>{this.marketListRender(MARKET.usdc)}</Fragment> },
   ];
 
+  tabOnClick = (market: string) => {
+    this.props.marketStore!.setCurMarket(market as MarketType);
+  }
+
   marketListRender = (market: string) => {
     return this.props.marketStore!.marketTokenList.get(market)!.map((data: IMarketItemInfo) => (
       <MarketItem
@@ -36,7 +42,9 @@ export class MarketList extends Component<IMarketListProps> {
 
   render() {
     return(
-      <CustomTab tabs={this.tabs} />
+      <CustomTab tabs={this.tabs} onClick={this.tabOnClick}>
+        <MarketInfoLine curMarketCount={this.props.marketStore!.getMarketCoinCount(this.props.marketStore!.curMarket)} />
+      </CustomTab>
     )
   }
 }

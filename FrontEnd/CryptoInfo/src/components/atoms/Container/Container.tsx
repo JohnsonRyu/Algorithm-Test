@@ -23,6 +23,7 @@ interface IContainerProps extends IComponentProps {
   _borderBottom?: boolean;
   _header?: boolean;
   _body?: boolean;
+  _background_color?: string;
 }
 
 const CustomStyledContainer = ({ className, ...props }: IContainerProps) => (
@@ -38,6 +39,7 @@ const StyledContainer = styled(CustomStyledContainer)`
   ${props => props._inner && innerStyling(props._inner)}
   ${props => props._content_align && contentAlignStyling(props._content_align)}
 
+  background-color: ${props => props._background_color};
   width: ${props => props._width};
   height: ${props => props._height};
 
@@ -70,6 +72,7 @@ export const Container = (props: IContainerProps) => (
     _borderBottom={props._borderBottom}
     _header={props._header}
     _body={props._body}
+    _background_color={props._background_color}
   >
     {props.children}
   </StyledContainer>

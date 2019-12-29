@@ -3,7 +3,10 @@ const COLOR = {
   korbitBlue: "#376fe0",
   lightGrey: "#E9E9E9",
   royalBlue: "#4f74f2",
-  indianRed: "#d9507d"
+  indianRed: "#d9507d",
+  grey: "#f5f5f5",
+  badgeGrey: "#e8e8e8",
+  badgeLightGrey: "#666666"
 };
 
 export const THEME = {
@@ -14,6 +17,9 @@ export const THEME = {
     tabBasicBorder: COLOR.lightGrey,
     priceFall: COLOR.royalBlue,
     priceRise: COLOR.indianRed,
-    priceEven: COLOR.black
+    priceEven: COLOR.black,
+    menuGrey: COLOR.grey,
+    menuBadgeGrey: COLOR.badgeGrey,
+    menuBadgeTextGrey: COLOR.badgeLightGrey,
   }
 };

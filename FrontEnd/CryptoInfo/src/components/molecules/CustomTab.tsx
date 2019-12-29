@@ -11,10 +11,15 @@ import { Container } from "../atoms/Container";
 
 interface ICustomTabProps extends IComponentProps {
   tabs: ITabType[];
+  onClick?: (name: string) => void;
 }
 
 @observer
 export class CustomTab extends Component<ICustomTabProps> {
+  static defaultProps = {
+    onClick: () => {}
+  };
+
   @observable activeItem = this.props.tabs[0].menuName;
   
   changeActiveItem = (name: string) => {
@@ -26,6 +31,7 @@ export class CustomTab extends Component<ICustomTabProps> {
     { name }: { [key: string]: string }
   ) => {
     this.changeActiveItem(name);
+    this.props.onClick!(name);
   };
 
   render() {
