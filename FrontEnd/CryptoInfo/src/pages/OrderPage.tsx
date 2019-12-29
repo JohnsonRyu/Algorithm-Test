@@ -2,11 +2,6 @@ import React from "react";
 import queryString from "query-string";
 import { RouteComponentProps } from "react-router-dom";
 
-// interface IOrderPageProps {
-//   location?: string;
-//   match?: string;
-// }
-
 const OrderPage = (props: RouteComponentProps) => {
   const query = queryString.parse(props.location.search);
   console.warn(query);
@@ -14,7 +9,7 @@ const OrderPage = (props: RouteComponentProps) => {
 
   return (
       <div>
-          <h2>About dqwdwqdq</h2>
+          <h2>{query.code}</h2>
       </div>
   );
 }
