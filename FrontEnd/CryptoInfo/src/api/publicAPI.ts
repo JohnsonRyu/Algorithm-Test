@@ -1,6 +1,5 @@
 import { RequestAPI } from "./requestAPI";
 import { SERVER_API_HOST } from "../constants/api";
-import { ICoinDetailed } from "../constants/interfaces";
 
 class PublicAPI {
   private BASE_URL: string = `${SERVER_API_HOST}`;
@@ -14,9 +13,7 @@ class PublicAPI {
     return this.api
       .publicRequest(`/ticker/detailed/all`, "get")
       .then((response) => {
-        const data: ICoinDetailed = response.data;
-
-        console.log(data);
+        return response.data;
       });
   };
 }

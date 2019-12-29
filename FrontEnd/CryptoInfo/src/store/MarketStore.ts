@@ -1,32 +1,47 @@
 import { observable } from "mobx";
 
-import { IMarketItemInfo, ICoinInfo } from "../constants/interfaces";
+import { IMarketItemInfo } from "../constants/interfaces";
 import { MARKETINFO } from "../constants/marketInfo";
+import { publicAPI } from "../api/publicAPI";
+import { MARKET } from "../constants/texts";
 
 export class MarketStore {
-  @observable marketItemInfo : IMarketItemInfo[] = [];
+  @observable marketTokenList = observable.map<string, Array<IMarketItemInfo>>([
+    [MARKET.krw, observable.array<IMarketItemInfo>()],
+    [MARKET.usdc, observable.array<IMarketItemInfo>()]
+  ]);
 
   constructor() {
-    this.marketItemInfo = this.getMarketDetailed();
+    this.init();
   }
 
-  private getMarketDetailed() {
-    return MARKETINFO.KRW.map((data: ICoinInfo) => {
-      const info: IMarketItemInfo = {
-        ...data,
-        timestamp: 1577365310583,
-        last: "52.2",
-        open: "55",
-        bid: "51.7",
-        ask: "52.2",
-        low: "51.6",
-        high: "55",
-        volume: "586236.187707313636363636",
-        change: "-2.8",
-        changePercent: "-2.4",
-        changeType: "FALL"
+  public getMarketDetailed = async() => {
+    return await publicAPI.getMarketDetailed()
+    .then((data) => {
+      for (let key in data) {
+        console.error(key);
       }
-      return info;
-    })
+    });
+  }
+
+  private init() {
+    for (let key in MARKETINFO) {
+      const info: IMarketItemInfo = {
+        ... MARKETINFO[key],
+        timestamp: 0,
+        last: "0",
+        open: "0",
+        bid: "0",
+        ask: "0",
+        low: "0",
+        high: "0",
+        volume: "0",
+        change: "0",
+        changePercent: "0",
+        changeType: "EVEN"
+      }
+
+      this.marketTokenList.get(info.market)?.push(info);
+    }
   }
 }

@@ -19,7 +19,6 @@ export interface ICoinDetailed {
 }
 
 export interface ICoinInfo {
-  currencyPair: string;
   market: string;
   symbol: string;
   koreanName: string;

@@ -4,9 +4,9 @@ import { observer, inject } from "mobx-react";
 import { CustomTab } from "../../components/molecules/CustomTab";
 import { ITabType, IMarketItemInfo } from "../../constants/interfaces";
 import { MarketItem } from "./MarketItem";
-import { publicAPI } from "../../api/publicAPI";
 import { MarketStore } from "../../store/MarketStore";
 import { STORE } from "../../constants/stores";
+import { MARKET } from "../../constants/texts";
 
 interface IMarketListProps {
   marketStore?: MarketStore;
@@ -16,22 +16,25 @@ interface IMarketListProps {
 @observer
 export class MarketList extends Component<IMarketListProps> {
 
+  componentDidMount = async() => {
+    await this.props.marketStore!.getMarketDetailed();
+  } 
+
   tabs: ITabType[] = [
-    { menuName: "KRW", render: () => <Fragment>{this.marketListRender()}</Fragment>},
-    { menuName: "USDC", render: () => <div>USDC</div>  },
+    { menuName: "KRW", render: () => <Fragment>{this.marketListRender(MARKET.krw)}</Fragment> },
+    { menuName: "USDC", render: () => <Fragment>{this.marketListRender(MARKET.usdc)}</Fragment> },
   ];
 
-  marketListRender = () => {
-    return this.props.marketStore!.marketItemInfo.map((data: IMarketItemInfo) => (
+  marketListRender = (market: string) => {
+    return this.props.marketStore!.marketTokenList.get(market)!.map((data: IMarketItemInfo) => (
       <MarketItem
-        key={data.symbol}
+        key={data.symbol + data.market}
         marketItemInfo={data}
       />
     ));
   }
 
   render() {
-    publicAPI.getMarketDetailed();
     return(
       <CustomTab tabs={this.tabs} />
     )

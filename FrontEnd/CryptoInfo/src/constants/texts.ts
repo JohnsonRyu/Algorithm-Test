@@ -10,3 +10,8 @@ export const MARKETUNIT = {
     USDC: "USDC"
   }
 }
+
+export const MARKET = {
+  krw: "KRW",
+  usdc: "USDC"
+};
