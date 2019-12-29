@@ -11,6 +11,7 @@ export const THEME = {
     tabBorder: COLOR.korbitBlue,
     tabText: COLOR.korbitBlue,
     containerBorder: COLOR.lightGrey,
+    tabBasicBorder: COLOR.lightGrey,
     priceFall: COLOR.royalBlue,
     priceRise: COLOR.indianRed,
     priceEven: COLOR.black

@@ -11,7 +11,9 @@ interface IMenuItemProps extends IComponentProps {
   onClick?: MenuItemProps["onClick"];
 
   _active?: boolean;
+  _inactive?: boolean;
   _cursor?: string;
+  _background_color?: string;
 }
 
 const SemanticStyledMenuItem = ({ className, ...props }: IMenuItemProps) => (
@@ -26,21 +28,28 @@ const SemanticStyledMenuItem = ({ className, ...props }: IMenuItemProps) => (
 
 const StyledMenuItem = styled(SemanticStyledMenuItem)`
   cursor: ${props => props._cursor};
+  background-color: ${props => props._background_color} !important;
 
   ${props =>
     props._active === true &&
     css`
       border-bottom: 2px solid ${THEME.basic.tabBorder} !important;
-      color: ${THEME.basic.tabBorder} !important;
-    `};
+  `};
+  ${props =>
+    props._inactive === true &&
+    css`
+      border-bottom: 2px solid ${THEME.basic.tabBasicBorder} !important;
+  `};
 `;
 
 export const MenuItem = (props: IMenuItemProps) => (
   <StyledMenuItem
     name={props.name}
-    _active={props._active}
-    _cursor={props._cursor}
     onClick={props.onClick}
+    _active={props._active}
+    _inactive={props._inactive}
+    _cursor={props._cursor}
+    _background_color={props._background_color}
   >
     {props.children}
   </StyledMenuItem>

@@ -13,6 +13,7 @@ interface IMenuProps extends IComponentProps {
   pointing?: MenuProps["pointing"];
   secondary?: MenuProps["secondary"];
   widths?: MenuProps["widths"];
+  fixed?: MenuProps["fixed"];
 
   _outer?: IOuterType;
 
@@ -26,6 +27,7 @@ const SemanticStyledMenu = ({ className, ...props }: IMenuProps) => (
     pointing={props.pointing}
     secondary={props.secondary}
     widths={props.widths}
+    fixed={props.fixed}
   >
     {props.children}
   </Menu>
@@ -43,6 +45,7 @@ export const SemanticMenu = (props: IMenuProps) => (
     pointing={props.pointing}
     secondary={props.secondary}
     widths={props.widths}
+    fixed={props.fixed}
     _outer={props._outer}
     _background_color={props._background_color}
     _width={props._width}

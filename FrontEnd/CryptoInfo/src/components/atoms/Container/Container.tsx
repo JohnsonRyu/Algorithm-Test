@@ -21,6 +21,8 @@ interface IContainerProps extends IComponentProps {
   _width?: string;
   _height?: string;
   _borderBottom?: boolean;
+  _header?: boolean;
+  _body?: boolean;
 }
 
 const CustomStyledContainer = ({ className, ...props }: IContainerProps) => (
@@ -36,13 +38,25 @@ const StyledContainer = styled(CustomStyledContainer)`
   ${props => props._inner && innerStyling(props._inner)}
   ${props => props._content_align && contentAlignStyling(props._content_align)}
 
-  width: ${props => props._width} !important;
-  height: ${props => props._height} !important;
+  width: ${props => props._width};
+  height: ${props => props._height};
 
   ${props =>
     props._borderBottom === true &&
     css`
-      border-bottom: 1px solid ${THEME.basic.containerBorder} !important;
+      border-bottom: 1px solid ${THEME.basic.containerBorder};
+  `};
+
+  ${props =>
+    props._header === true &&
+    css`
+      background-color: white;
+  `};
+
+  ${props =>
+    props._body === true &&
+    css`
+      margin-top: 40px;
   `};
 `;
 
@@ -54,6 +68,8 @@ export const Container = (props: IContainerProps) => (
     _width={props._width}
     _height={props._height}
     _borderBottom={props._borderBottom}
+    _header={props._header}
+    _body={props._body}
   >
     {props.children}
   </StyledContainer>
