@@ -11,6 +11,8 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   error => {
+    console.error("Axios API", error);
+    
     return Promise.reject(error);
   }
 );

@@ -16,9 +16,9 @@ interface IMarketListProps {
 @observer
 export class MarketList extends Component<IMarketListProps> {
 
-  componentDidMount = async() => {
-    await this.props.marketStore!.getMarketDetailed();
-  } 
+  componentDidMount() {
+    this.props.marketStore!.getMarketDetailed();
+  }
 
   tabs: ITabType[] = [
     { menuName: "KRW", render: () => <Fragment>{this.marketListRender(MARKET.krw)}</Fragment> },

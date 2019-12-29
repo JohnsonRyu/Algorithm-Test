@@ -1,9 +1,11 @@
 import { observable } from "mobx";
 
-import { IMarketItemInfo } from "../constants/interfaces";
+import { IMarketItemInfo, ICoinDetailed } from "../constants/interfaces";
 import { MARKETINFO } from "../constants/marketInfo";
 import { publicAPI } from "../api/publicAPI";
 import { MARKET } from "../constants/texts";
+import { ChangeType } from "../constants/types";
+import { stringToLocale } from "../commonFunction/stringControl";
 
 export class MarketStore {
   @observable marketTokenList = observable.map<string, Array<IMarketItemInfo>>([
@@ -18,14 +20,41 @@ export class MarketStore {
   public getMarketDetailed = async() => {
     return await publicAPI.getMarketDetailed()
     .then((data) => {
-      for (let key in data) {
-        console.error(key);
-      }
+      let krwCount:number = 0;
+      let usdcCount:number = 0;
+
+      Object.keys(data).map((key: string) => {
+        const market = this.getMarketString(key);
+        const coinDetail: ICoinDetailed = data[key];
+        const info: IMarketItemInfo = {
+          ... MARKETINFO[key],
+          timestamp: 0,
+          last: stringToLocale(coinDetail.last),
+          open: stringToLocale(coinDetail.open),
+          bid: stringToLocale(coinDetail.bid),
+          ask: stringToLocale(coinDetail.ask),
+          low: stringToLocale(coinDetail.low),
+          high: stringToLocale(coinDetail.high),
+          volume: stringToLocale(coinDetail.volume),
+          change: stringToLocale(coinDetail.change),
+          changePercent: stringToLocale(coinDetail.changePercent, 2),
+          changeType: this.calcChangeType(coinDetail.changePercent)
+        }
+
+        if(market === MARKET.krw) {
+          this.marketTokenList.get(market)![krwCount] = info;
+          krwCount++;
+        } else {
+          this.marketTokenList.get(market)![usdcCount] = info;
+          usdcCount++;
+        }
+      })
     });
   }
 
+
   private init() {
-    for (let key in MARKETINFO) {
+    for (const key in MARKETINFO) {
       const info: IMarketItemInfo = {
         ... MARKETINFO[key],
         timestamp: 0,
@@ -41,7 +70,22 @@ export class MarketStore {
         changeType: "EVEN"
       }
 
-      this.marketTokenList.get(info.market)?.push(info);
+      this.marketTokenList.get(info.market)!.push(info);
     }
+  }
+
+  // coin_market 형식일 때 (btc_krw)
+  private getMarketString(data: string) {
+    return data.split(/[_:]/)[1].toUpperCase();
+  }
+
+  private calcChangeType(changePercent: string) {
+    const percent: number = Number(changePercent);
+    let changeType: ChangeType = "EVEN";
+
+    if(percent > 0) changeType = "RISE";
+    else if(percent < 0) changeType = "FALL";
+
+    return changeType;
   }
 }

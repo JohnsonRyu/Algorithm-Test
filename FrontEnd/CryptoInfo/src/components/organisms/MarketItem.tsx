@@ -18,9 +18,7 @@ export class MarketItem extends Component<IMarketItemProps> {
   color: string = THEME.basic.priceEven;
   arrow: string = "-";
 
-  constructor(props: IMarketItemProps) {
-    super(props);
-
+  checkState = () => {
     if(this.props.marketItemInfo.market === "KRW") {
       this.marketUnit = "KRW";
     } else {
@@ -37,6 +35,8 @@ export class MarketItem extends Component<IMarketItemProps> {
   }
 
   render() {
+    this.checkState();
+    
     return(
         <Container _inner="column-middle" _height="80px" _content_align="space-between-center" _borderBottom>
           <Container>

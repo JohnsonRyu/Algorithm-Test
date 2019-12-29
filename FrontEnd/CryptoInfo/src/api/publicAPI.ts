@@ -14,8 +14,12 @@ class PublicAPI {
       .publicRequest(`/ticker/detailed/all`, "get")
       .then((response) => {
         return response.data;
+      })
+      .catch(error => {
+        console.error("ERROR:: getMarketDetailed", error)
       });
   };
 }
 
 export const publicAPI = new PublicAPI();
+
