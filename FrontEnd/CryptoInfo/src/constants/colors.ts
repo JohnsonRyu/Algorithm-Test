@@ -6,7 +6,11 @@ const COLOR = {
   indianRed: "#d9507d",
   grey: "#f5f5f5",
   badgeGrey: "#e8e8e8",
-  badgeLightGrey: "#666666"
+  badgeLightGrey: "#666666",
+  bidRed: "#d01454",
+  bidLightRed: "#ffeef4",
+  askBlue: "#3e67f1",
+  askLightBlue: "#e7ecff"
 };
 
 export const THEME = {
@@ -21,5 +25,9 @@ export const THEME = {
     menuGrey: COLOR.grey,
     menuBadgeGrey: COLOR.badgeGrey,
     menuBadgeTextGrey: COLOR.badgeLightGrey,
+    bidText: COLOR.bidRed,
+    bidBackground: COLOR.bidLightRed,
+    askText: COLOR.askBlue,
+    askBackground: COLOR.askLightBlue,
   }
 };

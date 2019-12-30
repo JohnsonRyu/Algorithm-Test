@@ -3,12 +3,12 @@ import React, { Component } from "react";
 import { List, ListItem } from "../atoms/List";
 import { Text } from "../atoms/Text";
 import { Container } from "../atoms/Container";
+import { THEME } from "../../constants/colors";
 
 interface IOrderBookAskProps {
-
 }
 
-const data = Array(5)
+const data = Array(15)
   .fill(1)
   .map(() => {
     return {
@@ -24,8 +24,8 @@ export class OrderBookAsk extends Component<IOrderBookAskProps> {
         <List _width="66.7%" _outer="compact" _inner="compact">
           {data.map((d: any, i: number) => (
             <ListItem key={i} _content_align="center" _orderBook>
-              <Text _background_color="#e7ecff" _flex={1} _orderBookAmount _marginRight="1px" _inner="column-small" _textAlign="right">{d.price}</Text>
-              <Text _background_color="#e7ecff" _flex={1} _orderBookPrice _color="#3e67f1" _inner="column-small" _textAlign="center">{d.amount}</Text>
+              <Text _background_color={THEME.basic.askBackground} _flex={1} _orderBookAmount _marginRight="1px" _inner="column-small" _textAlign="right">{d.price}</Text>
+              <Text _background_color={THEME.basic.askBackground} _flex={1} _orderBookPrice _color={THEME.basic.askText} _inner="column-small" _textAlign="center">{d.amount}</Text>
             </ListItem>
           ))}
         </List>
