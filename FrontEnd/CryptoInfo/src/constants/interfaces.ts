@@ -44,3 +44,8 @@ export interface IOrderBook {
   bids: Array<string>;
   asks: Array<string>;
 }
+
+export interface IMarketDecimals {
+  price: number;
+  amount: number;
+}

@@ -5,5 +5,7 @@ export function stringToLocale(str: string, digit?: number) {
 
   return Number(str).toLocaleString(
     undefined,
-    { minimumFractionDigits: digit })
+    { minimumFractionDigits: digit,
+      maximumFractionDigits: digit
+    })
 }
