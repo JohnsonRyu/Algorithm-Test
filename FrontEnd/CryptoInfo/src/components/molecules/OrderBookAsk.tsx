@@ -4,7 +4,7 @@ import { List, ListItem } from "../atoms/List";
 import { Text } from "../atoms/Text";
 import { Container } from "../atoms/Container";
 
-interface IOrderBookSellProps {
+interface IOrderBookAskProps {
 
 }
 
@@ -17,7 +17,7 @@ const data = Array(5)
     };
   });
 
-export class OrderBookSell extends Component<IOrderBookSellProps> {
+export class OrderBookAsk extends Component<IOrderBookAskProps> {
   render() {
     return (
       <Container _content_align="align-end">
