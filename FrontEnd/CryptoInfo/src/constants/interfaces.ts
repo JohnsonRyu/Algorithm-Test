@@ -28,3 +28,7 @@ export interface IMarketItemInfo extends ICoinInfo, ICoinDetailed {
   changeType: ChangeType;
   code: string;
 }
+
+export interface IOrderBookParam {
+  currency_pair: string;
+}

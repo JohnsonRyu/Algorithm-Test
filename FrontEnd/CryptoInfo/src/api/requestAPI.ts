@@ -27,10 +27,12 @@ export class RequestAPI {
   public publicRequest = async (
     url: string,
     method: APIMethod,
+    param?: object,
   ) => {
     return await axiosInstance({
       method: method,
-      url: this.BASE_URL + url
+      url: this.BASE_URL + url,
+      params: param
     });
   };
 }
