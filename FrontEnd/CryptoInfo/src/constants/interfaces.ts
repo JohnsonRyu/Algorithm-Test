@@ -32,3 +32,15 @@ export interface IMarketItemInfo extends ICoinInfo, ICoinDetailed {
 export interface IOrderBookParam {
   currency_pair: string;
 }
+
+export interface IOrderBookItem {
+  price: string;
+  amount: string;
+  temp: string;
+}
+
+export interface IOrderBook {
+  timestamp: number;
+  bids: Array<string>;
+  asks: Array<string>;
+}

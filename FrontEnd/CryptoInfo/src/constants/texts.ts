@@ -16,3 +16,8 @@ export const MARKET = {
   krw: "KRW",
   usdc: "USDC"
 };
+
+export const ORDERBOOK = {
+  bid: "bid",
+  ask: "ask"
+};

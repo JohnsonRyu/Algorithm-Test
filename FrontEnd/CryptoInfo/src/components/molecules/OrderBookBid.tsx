@@ -4,20 +4,18 @@ import { List, ListItem } from "../atoms/List";
 import { Text } from "../atoms/Text";
 import { Container } from "../atoms/Container";
 import { THEME } from "../../constants/colors";
+import { OrderBookStore } from "../../store/OrderBookStore";
+import { inject, observer } from "mobx-react";
+import { STORE } from "../../constants/stores";
+import { ORDERBOOK } from "../../constants/texts";
+import { IOrderBookItem } from "../../constants/interfaces";
 
 interface IOrderBookBidProps {
-
+  orderBookStore?: OrderBookStore;
 }
 
-const data = Array(15)
-  .fill(1)
-  .map(() => {
-    return {
-      price: "8,463,000",
-      amount: "0.30420000"
-    };
-  });
-
+@inject(STORE.orderBookStore)
+@observer
 export class OrderBookBid extends Component<IOrderBookBidProps> {
   render() {
     return (
@@ -26,8 +24,8 @@ export class OrderBookBid extends Component<IOrderBookBidProps> {
           <Text>Temp</Text>
         </Container>
         <List _width="66.7%" _outer="compact" _inner="compact">
-          {data.map((d: any, i: number) => (
-            <ListItem key={i} _content_align="center" _orderBook>
+          {this.props.orderBookStore!.orderBookList.get(ORDERBOOK.bid)!.map((data: IOrderBookItem, key: number) => (
+            <ListItem key={key} _content_align="center" _orderBook>
               <Text 
                 _background_color={THEME.basic.bidBackground}
                 _flex={1}
@@ -37,7 +35,7 @@ export class OrderBookBid extends Component<IOrderBookBidProps> {
                 _inner="column-small"
                 _textAlign="center"
               >
-                {d.amount}
+                {data.price}
               </Text>
               <Text
                 _background_color={THEME.basic.bidBackground}
@@ -46,7 +44,7 @@ export class OrderBookBid extends Component<IOrderBookBidProps> {
                 _inner="column-small"
                 _textAlign="left"
               >
-                {d.price}
+                {data.amount}
               </Text>
             </ListItem>
           ))}

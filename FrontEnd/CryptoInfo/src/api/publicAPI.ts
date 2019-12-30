@@ -29,7 +29,7 @@ class PublicAPI {
     return this.api
       .publicRequest(`/orderbook`, "get", parameter)
       .then((response) => {
-        return console.warn(response.data);
+        return response.data;
       })
       .catch(error => {
         console.error("ERROR:: getOrderBook", error)

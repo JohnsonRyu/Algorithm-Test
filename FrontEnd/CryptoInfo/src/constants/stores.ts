@@ -1,3 +1,4 @@
 export const STORE = {
-  marketStore: "marketStore"
+  marketStore: "marketStore",
+  orderBookStore: "orderBookStore"
 };
