@@ -83,7 +83,7 @@ export function innerStyling(_inner: IInnerType) {
     `;
   } else if (_inner === "small") {
     return css`
-      padding: 10px !important;
+      padding: 4px !important;
     `;
   } else if (_inner === "middle") {
     return css`

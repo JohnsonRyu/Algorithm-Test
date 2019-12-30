@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { IComponentProps } from "../../../constants/types";
 import {
@@ -20,6 +20,7 @@ interface IListItemProps extends IComponentProps {
   _width?: string;
   _height?: string;
   _background_color?: string;
+  _orderBook?: boolean;
 }
 
 const CustomStyledListItem = ({ className, ...props }: IListItemProps) => (
@@ -38,6 +39,14 @@ const StyledListItem = styled(CustomStyledListItem)`
   background-color: ${props => props._background_color};
   width: ${props => props._width};
   height: ${props => props._height};
+
+  ${props =>
+    props._orderBook === true &&
+    css`
+      margin-bottom: 1px;
+      height: 40px;
+      line-height: 38px;
+  `};
 `;
 
 export const ListItem = (props: IListItemProps) => (
@@ -48,6 +57,7 @@ export const ListItem = (props: IListItemProps) => (
     _width={props._width}
     _height={props._height}
     _background_color={props._background_color}
+    _orderBook={props._orderBook}
   >
     {props.children}
   </StyledListItem>
