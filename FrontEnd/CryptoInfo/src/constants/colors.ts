@@ -30,6 +30,7 @@ export const THEME = {
     bidBackground: COLOR.bidLightRed,
     askText: COLOR.askBlue,
     askBackground: COLOR.askLightBlue,
-    white: COLOR.white
+    white: COLOR.white,
+    loading: COLOR.korbitBlue
   }
 };
