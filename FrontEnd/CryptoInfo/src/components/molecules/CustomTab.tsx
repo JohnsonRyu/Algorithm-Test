@@ -36,7 +36,7 @@ export class CustomTab extends Component<ICustomTabProps> {
 
   render() {
     return (
-      <Container _header>
+      <Container>
         <Menu
           pointing
           secondary

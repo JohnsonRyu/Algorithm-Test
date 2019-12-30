@@ -10,7 +10,8 @@ const COLOR = {
   bidRed: "#d01454",
   bidLightRed: "#ffeef4",
   askBlue: "#3e67f1",
-  askLightBlue: "#e7ecff"
+  askLightBlue: "#e7ecff",
+  white: "#FFFFFF"
 };
 
 export const THEME = {
@@ -29,5 +30,6 @@ export const THEME = {
     bidBackground: COLOR.bidLightRed,
     askText: COLOR.askBlue,
     askBackground: COLOR.askLightBlue,
+    white: COLOR.white
   }
 };

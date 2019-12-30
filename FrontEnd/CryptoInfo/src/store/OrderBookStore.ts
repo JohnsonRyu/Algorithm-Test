@@ -22,8 +22,6 @@ export class OrderBookStore {
       let askSpliceArr;
       let bidSpliceArr;
 
-      console.error(MARKETDECIMALINFO[market]);
-
       if(data.asks.length < 10) {
         askSpliceArr = data.asks.reverse();
       } else {
@@ -42,7 +40,7 @@ export class OrderBookStore {
           temp: askSpliceArr[i][2],
         }
 
-        this.orderBookList.get(ORDERBOOK.ask)!.push(askData);
+        this.orderBookList.get(ORDERBOOK.ask)![i] = askData;
       }
 
       for (const i in bidSpliceArr){
@@ -52,12 +50,21 @@ export class OrderBookStore {
           temp: bidSpliceArr[i][2],
         }
 
-        this.orderBookList.get(ORDERBOOK.bid)!.push(bidData);
+        this.orderBookList.get(ORDERBOOK.bid)![i] = bidData;
       }
     });
   }
 
   private init() {
-    // 초기화
+    for(let i = 0; i < 10; i++) {
+      const tempData : IOrderBookItem = {
+        price: "",
+        amount: "",
+        temp: "",
+      }
+
+      this.orderBookList.get(ORDERBOOK.ask)!.push(tempData);
+      this.orderBookList.get(ORDERBOOK.bid)!.push(tempData);
+    }
   }
 }
