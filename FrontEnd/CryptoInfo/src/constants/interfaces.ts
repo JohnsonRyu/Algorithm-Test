@@ -1,4 +1,4 @@
-import { ChangeType } from "./types";
+import { ChangeType, TakerOrderType } from "./types";
 
 export interface ITabType {
   menuName: string;
@@ -48,4 +48,17 @@ export interface IOrderBook {
 export interface IMarketDecimals {
   price: number;
   amount: number;
+}
+
+export interface ITransactionParam {
+  currency_pair: string;
+  time: string;
+}
+
+export interface ITransaction {
+  timestamp: number;
+  tid: string;
+  price: string;
+  amount: string;
+  type: TakerOrderType;
 }

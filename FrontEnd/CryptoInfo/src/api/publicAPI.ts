@@ -1,6 +1,7 @@
 import { RequestAPI } from "./requestAPI";
 import { SERVER_API_HOST } from "../constants/api";
-import { IOrderBookParam } from "../constants/interfaces";
+import { IOrderBookParam, ITransactionParam } from "../constants/interfaces";
+import { TimeType } from "../constants/types";
 
 class PublicAPI {
   private BASE_URL: string = `${SERVER_API_HOST}`;
@@ -17,13 +18,13 @@ class PublicAPI {
         return response.data;
       })
       .catch(error => {
-        console.error("ERROR:: getMarketDetailed", error)
+        console.error("ERROR:: getMarketDetailed", error);
       });
   };
 
-  public getOrderBook = async (param: string) => {
+  public getOrderBook = async (currencyPair: string) => {
     const parameter: IOrderBookParam = {
-      currency_pair: param
+      currency_pair: currencyPair
     };
 
     return this.api
@@ -32,7 +33,23 @@ class PublicAPI {
         return response.data;
       })
       .catch(error => {
-        console.error("ERROR:: getOrderBook", error)
+        console.error("ERROR:: getOrderBook", error);
+      });
+  };
+
+  public getTransactionsData = async (currencyPair: string, time: TimeType) => {
+    const parameter: ITransactionParam = {
+      currency_pair: currencyPair,
+      time: time
+    };
+
+    return this.api
+      .publicRequest(`/transactions`, "get", parameter)
+      .then((response) => {
+        return response.data;
+      })
+      .catch(error => {
+        console.error("ERROR:: getTransactionsData", error);
       });
   };
 }
