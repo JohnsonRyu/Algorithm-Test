@@ -31,7 +31,7 @@ export class OrderBookStore {
   private getOrderBookData = async(market: string) => {
     return await publicAPI.getOrderBook(market)
     .then((data: IOrderBook) => {
-      console.warn("이벤트 실행")
+      console.log("이벤트 실행")
       let askSpliceArr: Array<string>;
       let bidSpliceArr: Array<string>;
       let askSize: number = 0;
