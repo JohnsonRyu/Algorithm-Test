@@ -30,23 +30,24 @@ export class OrderPage extends Component<IOrderPageProps> {
   @observable isLoading: boolean = true;
   query = queryString.parse(this.props.location.search);
 
-
   constructor(props: IOrderPageProps) {
     super(props);
-
     this.props.tradeStore!.init();
-
   }
   
   componentDidMount = async() => {
+    await this.props.orderBookStore!.setIntervalOrderBookData(this.query.code as string);
     await this.props.marketStore!.getMarketDetailed(this.query.code as string);
-    await this.props.orderBookStore!.getOrderBookData(this.query.code as string);
     await this.props.tradeStore!.getTransactionsData(this.query.code as string, "day");
     this.isLoading = false;
   }
 
+  componentWillUnmount = () => {
+    this.props.orderBookStore!.clearIntervalOrderBookData();
+  }
+
   arrowEvent = () => {
-    this.props.history.push('/');
+    this.props.history.push("/");
   }
 
   orderBookRender = () => {

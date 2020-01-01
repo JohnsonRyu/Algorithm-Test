@@ -13,14 +13,25 @@ export class OrderBookStore {
   ]);
   @observable askTotalSize : string = "";
   @observable bidTotalSize : string = "";
+  interval:number = 0;
 
   constructor() {
     this.init();
   }
 
-  public getOrderBookData = async(market: string) => {
+  public setIntervalOrderBookData = async(market: string) => {
+    await this.getOrderBookData(market);
+    this.interval = setInterval(() => this.getOrderBookData(market), 60000);
+  }
+
+  public clearIntervalOrderBookData = () => {
+    clearInterval(this.interval);
+  }
+
+  private getOrderBookData = async(market: string) => {
     return await publicAPI.getOrderBook(market)
     .then((data: IOrderBook) => {
+      console.warn("이벤트 실행")
       let askSpliceArr: Array<string>;
       let bidSpliceArr: Array<string>;
       let askSize: number = 0;
