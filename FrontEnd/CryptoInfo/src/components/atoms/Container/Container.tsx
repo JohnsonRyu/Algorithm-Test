@@ -12,6 +12,7 @@ import {
   contentAlignStyling
 } from "../../../constants/styles";
 import { THEME } from "../../../constants/colors";
+import { ORDERPAGE } from "../../../constants/sizes";
 
 interface IContainerProps extends IComponentProps {
   _outer?: IOuterType;
@@ -20,13 +21,16 @@ interface IContainerProps extends IComponentProps {
 
   _width?: string;
   _height?: string;
+  _orderFooter?: boolean;
   _borderBottom?: boolean;
   _header?: boolean;
   _body?: boolean;
+  _footer?: boolean;
   _background_color?: string;
   _font_size?: string;
   _line_height?: string;
   _margin_top?: string;
+  _margin_bottom?: string;
 }
 
 const CustomStyledContainer = ({ className, ...props }: IContainerProps) => (
@@ -48,6 +52,19 @@ const StyledContainer = styled(CustomStyledContainer)`
   font-size: ${props => props._font_size};
   line-height: ${props => props._line_height};
   margin-top: ${props => props._margin_top};
+  margin-bottom: ${props => props._margin_bottom};
+
+  ${props =>
+    props._orderFooter === true &&
+    css`
+      border-left: 1px solid ${THEME.basic.borderDarkGrey};
+      border-top: 1px solid ${THEME.basic.borderDarkGrey};
+      line-height: 40px;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      background-color: ${THEME.basic.borderBackgroundGrey};
+  `};
 
   ${props =>
     props._borderBottom === true &&
@@ -69,6 +86,17 @@ const StyledContainer = styled(CustomStyledContainer)`
     css`
       margin-top: 40px;
   `};
+
+  ${props =>
+    props._footer === true &&
+    css`
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      height: ${ORDERPAGE.footer.y};
+  `};
 `;
 
 export const Container = (props: IContainerProps) => (
@@ -78,13 +106,16 @@ export const Container = (props: IContainerProps) => (
     _content_align={props._content_align}
     _width={props._width}
     _height={props._height}
+    _orderFooter={props._orderFooter}
     _borderBottom={props._borderBottom}
     _header={props._header}
     _body={props._body}
+    _footer={props._footer}
     _background_color={props._background_color}
     _font_size={props._font_size}
     _line_height={props._line_height}
     _margin_top={props._margin_top}
+    _margin_bottom={props._margin_bottom}
   >
     {props.children}
   </StyledContainer>

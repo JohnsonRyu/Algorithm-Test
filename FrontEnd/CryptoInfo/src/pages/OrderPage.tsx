@@ -16,6 +16,7 @@ import { ORDERBOOKTEXT } from "../constants/texts";
 import { OrderBookStore } from "../store/OrderBookStore";
 import { TradeStore } from "../store/TradeStore";
 import { MarketStore } from "../store/MarketStore";
+import { OrderBookFooter } from "../components/molecules/OrderBookFooter";
 
 interface IOrderPageProps extends RouteComponentProps {
   orderBookStore?: OrderBookStore;
@@ -57,6 +58,7 @@ export class OrderPage extends Component<IOrderPageProps> {
         <Container _margin_top={MARKETLISTSIZE.navTopHeader.y}>
           <OrderBookAsk/>
           <OrderBookBid/>
+          <OrderBookFooter/>
         </Container>
       </Fragment>
     )

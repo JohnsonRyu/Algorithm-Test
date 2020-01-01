@@ -9,6 +9,7 @@ import { THEME } from "../../constants/colors";
 import { STORE } from "../../constants/stores";
 import { ORDERBOOK, ORDERBOOKTEXT } from "../../constants/texts";
 import { IOrderBookItem, ITransaction } from "../../constants/interfaces";
+import { ORDERPAGE } from "../../constants/sizes";
 import { OrderBookStore } from "../../store/OrderBookStore";
 import { TradeStore } from "../../store/TradeStore";
 
@@ -22,7 +23,7 @@ interface IOrderBookBidProps {
 export class OrderBookBid extends Component<IOrderBookBidProps> {
   render() {
     return (
-      <Container _content_align="base-line">
+      <Container _content_align="base-line" _margin_bottom={ORDERPAGE.footer.y}>
         <Definition _width="33.3%" _outer="compact" _inner="small" _font_size="10px" _line_height="16px">
           <DefinitionTitle _margin_bottom="10px" _font_weight="bold">
             {ORDERBOOKTEXT.KOR.tradeTitle}

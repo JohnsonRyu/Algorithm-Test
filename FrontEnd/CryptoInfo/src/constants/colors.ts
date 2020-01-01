@@ -11,7 +11,9 @@ const COLOR = {
   bidLightRed: "#ffeef4",
   askBlue: "#3e67f1",
   askLightBlue: "#e7ecff",
-  white: "#FFFFFF"
+  white: "#FFFFFF",
+  darkGrey: "#e7e7e9",
+  whiteSmoke: "#edeff3"
 };
 
 export const THEME = {
@@ -31,6 +33,8 @@ export const THEME = {
     askText: COLOR.askBlue,
     askBackground: COLOR.askLightBlue,
     white: COLOR.white,
-    loading: COLOR.korbitBlue
+    loading: COLOR.korbitBlue,
+    borderDarkGrey: COLOR.darkGrey,
+    borderBackgroundGrey: COLOR.whiteSmoke
   }
 };
