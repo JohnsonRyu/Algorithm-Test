@@ -1,7 +1,10 @@
+import { observable } from "mobx";
+
 import { publicAPI } from "../api/publicAPI";
 import { TimeType } from "../constants/types";
 import { ITransaction } from "../constants/interfaces";
-import { observable } from "mobx";
+import { stringToLocale } from "../commonFunction/stringControl";
+import { MARKETDECIMALINFO } from "../constants/marketInfo";
 
 export class TradeStore {
   @observable transactionsData = Array<ITransaction>();
@@ -18,8 +21,8 @@ export class TradeStore {
         const tempData : ITransaction = {
           timestamp: data[i].timestamp,
           tid: data[i].tid,
-          price: data[i].price,
-          amount: data[i].amount,
+          price: stringToLocale(data[i].price, MARKETDECIMALINFO[market].price),
+          amount: stringToLocale(data[i].amount, MARKETDECIMALINFO[market].amount),
           type: data[i].type
         }
 

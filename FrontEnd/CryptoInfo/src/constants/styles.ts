@@ -30,7 +30,8 @@ export type IContentAlignType =
   | "justify-end"
   | "justify-space-between"
   | "space-between-center"
-  | "justify-end-center";
+  | "justify-end-center"
+  | "base-line";
 
 export function outerStyling(_outer: IOuterType) {
   if (_outer === "compact") {
@@ -155,6 +156,10 @@ export function contentAlignStyling(_content_align: IContentAlignType) {
       display: flex !important;
       justify-content: flex-end !important;
       align-items: center !important;
+    `;
+  } else if (_content_align === "base-line") {
+    return css`
+      display: flex !important;
     `;
   }
 }
