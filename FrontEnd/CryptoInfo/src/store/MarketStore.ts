@@ -38,8 +38,6 @@ export class MarketStore {
         code: market
       }
 
-      console.error(marketItem)
-
       this.curCurrencyPairData = marketItem;
     });
   }
