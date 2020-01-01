@@ -13,8 +13,8 @@ export class TradeStore {
     return await publicAPI.getTransactionsData(market, time)
     .then((data: Array<ITransaction>) => {
       // 웹소켓이 아니기 때문에 day로 받아옵니다.
-      if(data.length > 10) {
-        data = data.splice(0, 10);
+      if(data.length > 15) {
+        data = data.splice(0, 15);
       }
 
       for (const i in data){

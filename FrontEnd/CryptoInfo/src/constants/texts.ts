@@ -5,6 +5,13 @@ export const MARKETLISTTEXT = {
   }
 };
 
+export const ORDERBOOKTEXT = {
+  KOR : {
+    tradeTitle: "체결내역"
+  }
+};
+
+
 export const MARKETUNIT = {
   KOR: {
     KRW: "원",
