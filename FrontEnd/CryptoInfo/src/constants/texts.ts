@@ -8,10 +8,13 @@ export const MARKETLISTTEXT = {
 export const ORDERBOOKTEXT = {
   KOR : {
     tradeTitle: "체결내역",
-    priceList: "호가"
+    priceList: "호가",
+    volume: "거개량",
+    open: "24h 전",
+    high: "24h 고가",
+    low: "24h 저가",
   }
 };
-
 
 export const MARKETUNIT = {
   KOR: {

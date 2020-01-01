@@ -22,7 +22,8 @@ export class MarketPage extends Component<IMarketListProps> {
   @observable isLoading: boolean = true;
 
   componentDidMount= async() => {
-    await this.props.marketStore!.getMarketDetailed();
+    this.props.marketStore!.setCurMarket("KRW");
+    await this.props.marketStore!.getMarketDetailedAll();
     this.isLoading = false;
   }
 

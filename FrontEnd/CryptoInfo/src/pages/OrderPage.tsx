@@ -11,17 +11,19 @@ import { TopNavHeader } from "../components/organisms/TopNavHeader";
 import { Loading } from "../components/molecules/Loading";
 import { STORE } from "../constants/stores";
 import { MARKETLISTSIZE } from "../constants/sizes";
-import { OrderBookStore } from "../store/OrderBookStore";
-import { TradeStore } from "../store/TradeStore";
 import { MARKETINFO } from "../constants/marketInfo";
 import { ORDERBOOKTEXT } from "../constants/texts";
+import { OrderBookStore } from "../store/OrderBookStore";
+import { TradeStore } from "../store/TradeStore";
+import { MarketStore } from "../store/MarketStore";
 
 interface IOrderPageProps extends RouteComponentProps {
   orderBookStore?: OrderBookStore;
   tradeStore?: TradeStore;
+  marketStore?: MarketStore;
 }
 
-@inject(STORE.orderBookStore, STORE.tradeStore)
+@inject(STORE.orderBookStore, STORE.tradeStore, STORE.marketStore)
 @observer
 export class OrderPage extends Component<IOrderPageProps> {
   @observable isLoading: boolean = true;
@@ -36,6 +38,7 @@ export class OrderPage extends Component<IOrderPageProps> {
   }
   
   componentDidMount = async() => {
+    await this.props.marketStore!.getMarketDetailed(this.query.code as string);
     await this.props.orderBookStore!.getOrderBookData(this.query.code as string);
     await this.props.tradeStore!.getTransactionsData(this.query.code as string, "day");
     this.isLoading = false;

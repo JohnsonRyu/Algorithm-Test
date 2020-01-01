@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 
 import { IMarketItemInfo, ICoinDetailed } from "../constants/interfaces";
-import { MARKETINFO } from "../constants/marketInfo";
+import { MARKETINFO, MARKETDECIMALINFO } from "../constants/marketInfo";
 import { publicAPI } from "../api/publicAPI";
 import { MARKET } from "../constants/texts";
 import { ChangeType, MarketType } from "../constants/types";
@@ -13,13 +13,39 @@ export class MarketStore {
     [MARKET.usdc, observable.array<IMarketItemInfo>()]
   ]);
   @observable curMarket: MarketType = "KRW";
+  @observable curCurrencyPairData?: IMarketItemInfo;
 
   constructor() {
     this.init();
   }
 
-  public getMarketDetailed = async() => {
-    return await publicAPI.getMarketDetailed()
+  public getMarketDetailed = async(market: string) => {
+    return await publicAPI.getMarketDetailed(market)
+    .then((data) => {
+      const marketItem: IMarketItemInfo = {
+        ... MARKETINFO[market],
+        timestamp: 0,
+        last: stringToLocale(data.last, MARKETDECIMALINFO[market].price),
+        open: stringToLocale(data.open, MARKETDECIMALINFO[market].price),
+        bid: stringToLocale(data.bid, MARKETDECIMALINFO[market].price),
+        ask: stringToLocale(data.ask, MARKETDECIMALINFO[market].price),
+        low: stringToLocale(data.low, MARKETDECIMALINFO[market].price),
+        high: stringToLocale(data.high, MARKETDECIMALINFO[market].price),
+        volume: stringToLocale(data.volume, MARKETDECIMALINFO[market].amount),
+        change: stringToLocale(data.change, MARKETDECIMALINFO[market].price),
+        changePercent: stringToLocale(data.changePercent, 2),
+        changeType: this.calcChangeType(data.changePercent),
+        code: market
+      }
+
+      console.error(marketItem)
+
+      this.curCurrencyPairData = marketItem;
+    });
+  }
+
+  public getMarketDetailedAll = async() => {
+    return await publicAPI.getMarketDetailedAll()
     .then((data) => {
       let krwCount:number = 0;
       let usdcCount:number = 0;
@@ -54,12 +80,12 @@ export class MarketStore {
     });
   }
 
-  public setCurMarket = (market: MarketType) => {
-    this.curMarket = market;
-  }
-
   public getMarketCoinCount = (market: MarketType) => {
     return this.marketTokenList.get(market)!.length;
+  }
+
+  public setCurMarket = (market: MarketType) => {
+    this.curMarket = market;
   }
 
   private init() {
