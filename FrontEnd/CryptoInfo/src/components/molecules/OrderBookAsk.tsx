@@ -9,6 +9,7 @@ import { IOrderBookItem } from "../../constants/interfaces";
 import { STORE } from "../../constants/stores";
 import { OrderBookStore } from "../../store/OrderBookStore";
 import { ORDERBOOK } from "../../constants/texts";
+import { DefinitionTitle, DefinitionData, Definition } from "../atoms/Definition";
 
 interface IOrderBookAskProps {
   orderBookStore?: OrderBookStore;
@@ -47,7 +48,24 @@ export class OrderBookAsk extends Component<IOrderBookAskProps> {
           ))}
         </List>
         <Container _width="33.3%" _inner="small" _font_size="10px" _line_height="16px">
-          <Text>Temp</Text>
+          <Definition _outer="compact" _content_align="space-between-center" _margin_bottom="4px">
+            <DefinitionTitle>거래량</DefinitionTitle>
+            <DefinitionData>879 BCH</DefinitionData>
+          </Definition>
+          <hr />
+          <Definition _content_align="space-between-center" _outer="compact" _margin_bottom="4px" _line_height="16px">
+            <DefinitionTitle>24h 전</DefinitionTitle>
+            <DefinitionData _outer="compact">239,900 원</DefinitionData>
+          </Definition>
+          <Definition _content_align="space-between-center" _outer="compact" _margin_bottom="4px">
+            <DefinitionTitle>24h 고가</DefinitionTitle>
+            <DefinitionData _outer="compact">239,900 원</DefinitionData>
+          </Definition>
+          <Definition _content_align="space-between-center"_outer="compact" _margin_bottom="4px">
+            <DefinitionTitle>24h 저가</DefinitionTitle>
+            <DefinitionData _outer="compact">239,900 원</DefinitionData>
+          </Definition>
+          
         </Container>
       </Container>
     );
