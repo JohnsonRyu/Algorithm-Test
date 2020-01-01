@@ -1,6 +1,6 @@
 import { RequestAPI } from "./requestAPI";
 import { SERVER_API_HOST } from "../constants/api";
-import { IOrderBookParam, ITransactionParam } from "../constants/interfaces";
+import { IOrderBookParam, ITransactionParam, IMarketDetailParam } from "../constants/interfaces";
 import { TimeType } from "../constants/types";
 
 class PublicAPI {
@@ -11,9 +11,12 @@ class PublicAPI {
     this.api = new RequestAPI(this.BASE_URL);
   }
 
-  public getMarketDetailed = async () => {
+  public getMarketDetailed = async (currencyPair: string) => {
+    const parameter: IMarketDetailParam = {
+      currency_pair: currencyPair
+    };
     return this.api
-      .publicRequest(`/ticker/detailed/all`, "get")
+      .publicRequest(`/ticker/detailed`, "get", parameter)
       .then((response) => {
         return response.data;
       })
@@ -22,11 +25,21 @@ class PublicAPI {
       });
   };
 
+  public getMarketDetailedAll = async () => {
+    return this.api
+      .publicRequest(`/ticker/detailed/all`, "get")
+      .then((response) => {
+        return response.data;
+      })
+      .catch(error => {
+        console.error("ERROR:: getMarketDetailedAll", error);
+      });
+  };
+
   public getOrderBook = async (currencyPair: string) => {
     const parameter: IOrderBookParam = {
       currency_pair: currencyPair
     };
-
     return this.api
       .publicRequest(`/orderbook`, "get", parameter)
       .then((response) => {
@@ -42,7 +55,6 @@ class PublicAPI {
       currency_pair: currencyPair,
       time: time
     };
-
     return this.api
       .publicRequest(`/transactions`, "get", parameter)
       .then((response) => {
