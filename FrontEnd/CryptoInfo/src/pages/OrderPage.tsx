@@ -23,6 +23,12 @@ interface IOrderPageProps extends RouteComponentProps {
 @observer
 export class OrderPage extends Component<IOrderPageProps> {
   @observable isLoading: boolean = true;
+
+  constructor(props: IOrderPageProps) {
+    super(props);
+
+    this.props.tradeStore!.init();
+  }
   
   componentDidMount = async() => {
     const query = queryString.parse(this.props.location.search);

@@ -8,7 +8,7 @@ import { MARKETDECIMALINFO } from "../constants/marketInfo";
 
 export class TradeStore {
   @observable transactionsData = Array<ITransaction>();
-  
+
   public getTransactionsData = async(market: string, time: TimeType) => {
     return await publicAPI.getTransactionsData(market, time)
     .then((data: Array<ITransaction>) => {
@@ -29,5 +29,11 @@ export class TradeStore {
         this.transactionsData.push(tempData);
       }
     });
+  }
+
+  public init() {
+    if(this.transactionsData.length > 0) {
+      this.transactionsData = [];
+    }
   }
 }
