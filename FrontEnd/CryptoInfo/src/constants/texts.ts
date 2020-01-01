@@ -13,6 +13,7 @@ export const ORDERBOOKTEXT = {
     open: "24h 전",
     high: "24h 고가",
     low: "24h 저가",
+    footer: "주문잔량",
   }
 };
 

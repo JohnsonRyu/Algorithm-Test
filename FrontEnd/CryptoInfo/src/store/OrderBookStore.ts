@@ -4,13 +4,15 @@ import { IOrderBook, IOrderBookItem } from "../constants/interfaces";
 import { publicAPI } from "../api/publicAPI";
 import { ORDERBOOK } from "../constants/texts";
 import { MARKETDECIMALINFO } from "../constants/marketInfo";
-import { stringToLocale } from "../commonFunction/stringControl";
+import { stringToLocale, numberToLocale } from "../commonFunction/stringControl";
 
 export class OrderBookStore {
   @observable orderBookList = observable.map<string, Array<IOrderBookItem>>([
     [ORDERBOOK.bid, observable.array<IOrderBookItem>()],
     [ORDERBOOK.ask, observable.array<IOrderBookItem>()]
   ]);
+  @observable askTotalSize : string = "";
+  @observable bidTotalSize : string = "";
 
   constructor() {
     this.init();
@@ -19,8 +21,10 @@ export class OrderBookStore {
   public getOrderBookData = async(market: string) => {
     return await publicAPI.getOrderBook(market)
     .then((data: IOrderBook) => {
-      let askSpliceArr;
-      let bidSpliceArr;
+      let askSpliceArr: Array<string>;
+      let bidSpliceArr: Array<string>;
+      let askSize: number = 0;
+      let bidSize: number = 0;
 
       if(data.asks.length < 10) {
         askSpliceArr = data.asks.reverse();
@@ -40,6 +44,7 @@ export class OrderBookStore {
           temp: askSpliceArr[i][2],
         }
 
+        askSize += Number(askSpliceArr[i][1]);
         this.orderBookList.get(ORDERBOOK.ask)![i] = askData;
       }
 
@@ -50,8 +55,12 @@ export class OrderBookStore {
           temp: bidSpliceArr[i][2],
         }
 
+        bidSize += Number(bidSpliceArr[i][1]);
         this.orderBookList.get(ORDERBOOK.bid)![i] = bidData;
       }
+
+      this.askTotalSize = numberToLocale(askSize, 2);
+      this.bidTotalSize = numberToLocale(bidSize, 2);
     });
   }
 

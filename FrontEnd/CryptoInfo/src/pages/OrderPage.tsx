@@ -58,7 +58,10 @@ export class OrderPage extends Component<IOrderPageProps> {
         <Container _margin_top={MARKETLISTSIZE.navTopHeader.y}>
           <OrderBookAsk/>
           <OrderBookBid/>
-          <OrderBookFooter/>
+          <OrderBookFooter 
+            askTotalSize={this.props.orderBookStore!.askTotalSize}
+            bidTotalSize={this.props.orderBookStore!.bidTotalSize}
+          />
         </Container>
       </Fragment>
     )
