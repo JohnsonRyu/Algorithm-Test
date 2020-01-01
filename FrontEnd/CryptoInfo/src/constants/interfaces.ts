@@ -52,6 +52,7 @@ export interface IOrderBook {
 export interface IMarketDecimals {
   price: number;
   amount: number;
+  volume: number;
 }
 
 export interface ITransactionParam {

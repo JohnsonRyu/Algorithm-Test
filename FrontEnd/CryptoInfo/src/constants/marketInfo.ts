@@ -175,118 +175,147 @@ export const MARKETINFO: {[key: string]: ICoinInfo} = {
 export const MARKETDECIMALINFO: {[key: string]: IMarketDecimals} = {
   bch_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   fet_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   bnb_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   loom_krw : {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   dai_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   zil_krw: {
     price: 2,
-    amount: 4
+    amount: 4,
+    volume: 2
   }, 
   mkr_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   xlm_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   usdc_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   med_krw: {
     price: 2,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   btc_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   bat_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   gnt_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   poly_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   aergo_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   bsv_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   eth_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   knc_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   snt_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   zrx_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   eos_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   xrp_krw: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   link_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   qtum_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   etc_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   trx_krw: {
     price: 2,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   omg_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   ltc_krw: {
     price: 0,
-    amount: 4
+    amount: 4,
+    volume: 2
   },
   btc_usdc: {
     price: 1,
-    amount: 4
+    amount: 4,
+    volume: 2
   }
 };

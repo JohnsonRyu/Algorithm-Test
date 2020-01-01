@@ -31,7 +31,7 @@ export class MarketStore {
         ask: stringToLocale(data.ask, MARKETDECIMALINFO[market].price),
         low: stringToLocale(data.low, MARKETDECIMALINFO[market].price),
         high: stringToLocale(data.high, MARKETDECIMALINFO[market].price),
-        volume: stringToLocale(data.volume, MARKETDECIMALINFO[market].amount),
+        volume: stringToLocale(data.volume, MARKETDECIMALINFO[market].volume),
         change: stringToLocale(data.change, MARKETDECIMALINFO[market].price),
         changePercent: stringToLocale(data.changePercent, 2),
         changeType: this.calcChangeType(data.changePercent),
