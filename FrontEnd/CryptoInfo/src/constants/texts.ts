@@ -7,7 +7,8 @@ export const MARKETLISTTEXT = {
 
 export const ORDERBOOKTEXT = {
   KOR : {
-    tradeTitle: "체결내역"
+    tradeTitle: "체결내역",
+    priceList: "호가"
   }
 };
 
