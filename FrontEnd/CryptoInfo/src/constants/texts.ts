@@ -1,7 +1,7 @@
 export const MARKETLISTTEXT = {
   KOR: {
     tradeButton: "거래",
-    InfoLine: "암호화화폐 시세",
+    infoLine: "암호화화폐 시세",
     inputDefault: "검색어를 입력해 주세요."
   }
 };
