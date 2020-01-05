@@ -5,6 +5,9 @@ export const MARKETLISTSIZE = {
   },
   navTopHeader: {
     y: "60px"
+  },
+  infoLine: {
+    y: "50px"
   }
 };
 
