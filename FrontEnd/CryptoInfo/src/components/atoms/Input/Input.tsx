@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { IComponentProps } from "../../../constants/types";
 import {
@@ -22,6 +22,7 @@ interface IInputProps extends IComponentProps {
   _width?: string;
   _height?: string;
   _background_color?: string;
+  _outline_clear?: boolean;
 }
 
 const CustomStyledInput = ({ className, ...props }: IInputProps) => (
@@ -38,6 +39,12 @@ const StyledInput = styled(CustomStyledInput)`
   ${props => props._inner && innerStyling(props._inner)}
   ${props => props._content_align && contentAlignStyling(props._content_align)}
 
+  ${props =>
+    props._outline_clear === true &&
+    css`
+      outline-style: none;
+  `};
+
   background-color: ${props => props._background_color};
   width: ${props => props._width};
   height: ${props => props._height};
@@ -52,6 +59,7 @@ export const Input = (props: IInputProps) => (
     _width={props._width}
     _height={props._height}
     _background_color={props._background_color}
+    _outline_clear={props._outline_clear}
   >
     {props.children}
   </StyledInput>
